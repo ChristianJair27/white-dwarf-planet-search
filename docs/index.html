@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>White Dwarf Planet Search</title>
+<meta name="description" content="An open research notebook: searching Gaia and TESS archival data for planets and debris transiting the 16,676 white dwarfs within 100 pc.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0e14; --panel: #121722; --ink: #e9e6df; --dim: #9aa3b2; --line: #232a38; --accent: #ffb067; --blue: #5ab4ff;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 Inter, system-ui, sans-serif; }
+  a { color: var(--blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  header { padding: 72px 16px 40px; max-width: 1040px; margin: 0 auto; }
+  h1 { font: 900 clamp(34px, 6vw, 58px)/1.05 "Playfair Display", serif; margin: 0 0 18px; letter-spacing: -0.01em; }
+  h2 { font: 700 30px/1.2 "Playfair Display", serif; margin: 56px 0 14px; }
+  .lede { font-size: 20px; color: var(--ink); max-width: 760px; }
+  .meta { color: var(--dim); font-size: 15px; margin-top: 18px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 0 16px 80px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 12px; margin-top: 28px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .stat b { display: block; font: 800 30px/1.1 Inter, sans-serif; color: var(--accent); }
+  .stat span { color: var(--dim); font-size: 14px; }
+  figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  figure img { display: block; width: 100%; height: auto; background: #0b0e14; }
+  figcaption { padding: 12px 16px 16px; color: var(--dim); font-size: 15px; }
+  figcaption b { color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  td, th { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--dim); font-weight: 600; }
+  td:first-child { white-space: nowrap; color: var(--dim); }
+  .note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; color: var(--ink); }
+  footer { color: var(--dim); font-size: 14px; border-top: 1px solid var(--line); padding: 24px 16px; max-width: 1040px; margin: 0 auto; }
+  @media (max-width: 560px) { td:first-child { white-space: normal; } body { font-size: 16px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Planets around white dwarfs</h1>
+  <p class="lede">We search public archival data for planets and planetary debris that cross white dwarfs, the
+    Earth-sized remnants of stars like the Sun. This is our open research notebook: every report, vetting record,
+    negative result and correction.</p>
+  <p class="meta">Christian Jair · Kister Space · citizen science, not peer reviewed ·
+    <a href="https://github.com/ChristianJair27/white-dwarf-planet-search">GitHub repository</a> ·
+    <a href="https://www.youtube.com/@KisterSpace">videos</a> · updated 12 November 2026</p>
+  <div class="stats">
+    <div class="stat"><b>16,676</b><span>white dwarfs within 100 pc (Gaia EDR3)</span></div>
+    <div class="stat"><b>3,339</b><span>bright enough for TESS (G &lt; 17)</span></div>
+    <div class="stat"><b>1,347</b><span>processed by our transit search so far</span></div>
+    <div class="stat"><b>0</b><span>new transiting planets or debris found so far</span></div>
+  </div>
+</header>
+<main>
+  <figure>
+    <img src="img/sky_map.png" alt="All-sky map of the 16,676 white dwarfs within 100 parsecs, coloured by temperature">
+    <figcaption><b>The sample.</b> Every high-confidence white dwarf within 100 pc in the Gaia EDR3 catalogue of
+      Gentile Fusillo et al. (2021). Labels are in Spanish, as in our working dashboard.</figcaption>
+  </figure>
+
+  <h2>Why minutes matter</h2>
+  <p>A white dwarf is about the size of the Earth, so a planet crossing it can block most of its light, but only
+    for 2 to 8 minutes. TESS's 20-second light curves resolve such a transit; searches tuned for hour-long events
+    miss it. Only one planet is known to transit a white dwarf, WD 1856+534 b (Vanderburg et al. 2020), and our
+    pipeline finds it blind.</p>
+  <div class="grid">
+    <figure>
+      <img src="img/wd1856_transit.png" alt="Phase-folded TESS light curve of WD 1856+534 showing the planet's transit">
+      <figcaption><b>Validation.</b> WD 1856+534 b recovered by our search: period 1.40794 d. The apparent depth of
+        about 100 % is not physical; the TESS crowding correction over-scales it because two neighbours share the
+        pixel (published depth 56 %).</figcaption>
+    </figure>
+    <figure>
+      <img src="img/ml_recall_map.png" alt="Recall of injected transits as a function of depth and duration">
+      <figcaption><b>Sensitivity.</b> Injected transits in real TESS windows: in a single 6-hour window a transit
+        must be about 4 % deep to be found half the time. Stacking many transits goes deeper.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/wdclock_hz_periods.png" alt="Orbital periods of the habitable zone of each white dwarf">
+      <figcaption><b>Where to look.</b> Habitable-zone orbital periods for the 100 pc white dwarfs from the
+        Montreal cooling sequences: for most TESS targets the whole zone sits inside 30 days.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/planetfate_known_planets.png" alt="Fate of the known exoplanets when their stars become white dwarfs">
+      <figcaption><b>Who survives.</b> Of 4,294 known planets around future white dwarfs, 186 survive the red-giant
+        phase and none ends inside 1 au, so close-in planets must arrive later.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/irx_vosa_seds.png" alt="Spectral energy distributions of infrared-excess candidates">
+      <figcaption><b>Glowing too much.</b> Spectral energy distributions of infrared-excess candidates: warm dust or a
+        cool companion. Per-object literature checks showed our best case was already published.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Reports</h2>
+  <table>
+    <tr><th>Date</th><th>Report</th></tr>
+    <tr><td>2026-10-21</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-10-21-search-status-report.md">Search status: 24 periodic signals, zero transits; a census of TESS 20-s data</a></td></tr>
+    <tr><td>2026-10-25</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-10-25-ml-transit-recovery.md">Injection-recovery with machine learning</a></td></tr>
+    <tr><td>2026-10-25</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-10-25-wd1856-migration-and-travel.md">WD 1856+534 b: how a giant planet ends up at 0.02 au</a></td></tr>
+    <tr><td>2026-10-25</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-10-25-mars-rems-weather.md">Fourteen years of weather at Gale crater (Curiosity REMS)</a></td></tr>
+    <tr><td>2026-10-26</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-10-26-death-of-the-sun.md">The death of the Sun and the fate of its planets</a></td></tr>
+    <tr><td>2026-10-28</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-10-28-cosmic-timeline.md">A linear timeline of cosmic history</a></td></tr>
+    <tr><td>2026-11-07</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-11-07-ir-excess-second-pass.md">Infrared excess around white dwarfs within 100 pc: second pass</a></td></tr>
+    <tr><td>2026-11-08</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-11-08-polluted-wd-wide-binaries.md">Polluted white dwarfs have fewer wide companions (a confirmation, with corrections)</a></td></tr>
+    <tr><td>2026-11-09</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-11-09-planet-fate.md">The fate of the known exoplanets when their stars die</a></td></tr>
+    <tr><td>2026-11-09</td><td><a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/reports/2026-11-09-wd-cooling-clock.md">Cooling ages and habitable-zone windows for 16,676 white dwarfs</a></td></tr>
+  </table>
+
+  <h2>How we work</h2>
+  <p class="note">A periodic signal is not a planet. Every signal is checked against catalogued variables, neighbours
+    inside the 21-arcsecond TESS pixel, odd and even transits, each sector separately and the TESS orbital alias, and
+    the verdict is written down — <a href="https://github.com/ChristianJair27/white-dwarf-planet-search/tree/main/notes/vetting">one record per star</a>.
+    Before calling anything new we search the literature for that specific object, and when we get something wrong
+    the correction stays in the report.</p>
+
+  <h2>Tools we released</h2>
+  <ul>
+    <li><a href="https://github.com/ChristianJair27/wdclock">wdclock</a> — white-dwarf cooling ages and habitable-zone windows</li>
+    <li><a href="https://github.com/ChristianJair27/planetfate">planetfate</a> — which planets survive the death of their star</li>
+    <li><a href="https://github.com/ChristianJair27/telemetry-anomaly">telemetry-anomaly</a> — spacecraft telemetry anomaly detection on NASA SMAP/MSL data</li>
+  </ul>
+  <p>Next: <a href="https://github.com/ChristianJair27/white-dwarf-planet-search/blob/main/ROADMAP.md">the roadmap</a> —
+    the completeness map as a short research note, and readiness for Gaia DR4 (2 December 2026).</p>
+</main>
+<footer>Text and figures CC BY 4.0, Christian Jair (Kister Space). Data: NASA TESS/MAST, ESA Gaia, NOIRLab Legacy
+  Surveys, NASA Exoplanet Archive, CDS/VizieR; full credits in each report.</footer>
+</body>
+</html>

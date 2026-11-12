@@ -1,0 +1,111 @@
+# Planets around white dwarfs: an open research notebook
+
+![The 16,676 white dwarfs within 100 pc from Gaia EDR3](figures/sky_map.png)
+
+We are searching public archival data for planets and planetary debris that transit white dwarfs, the Earth-sized
+remnants of stars like the Sun. This repository is our open notebook: the reports, the per-object vetting records,
+the literature checks and the corrections, published as we go. It is a citizen-science project run by
+**Christian Jair (Kister Space)**; nothing here has been peer reviewed.
+
+**Website:** https://christianjair27.github.io/white-dwarf-planet-search/ ·
+**Videos:** [youtube.com/@KisterSpace](https://www.youtube.com/@KisterSpace)
+
+## Why white dwarfs
+
+A white dwarf has about half the Sun's mass packed into a body the size of the Earth. A planet crossing it blocks a
+large fraction of the light, but only for minutes, so ordinary transit searches tuned for hour-long events miss it.
+Only one planet is known to transit a white dwarf, WD 1856+534 b (Vanderburg et al. 2020, Nature 585, 363). Every
+other planet that orbited these stars had to survive the star's red-giant phase; the ones we can find tell us what
+happens to planetary systems, including ours, after their star dies.
+
+## Data
+
+- **Sample:** the 16,676 white dwarfs within 100 pc of the Gentile Fusillo et al. (2021) Gaia EDR3 catalogue
+  (parallax > 10 mas, P_WD > 0.75); 3,339 are bright enough for TESS (G < 17).
+- **Light curves:** NASA TESS SPOC products from MAST at 20-s and 120-s cadence. 2,847 of the 3,339 targets have
+  20-s data ([census](data/tess_20s_coverage.csv), [report](reports/2026-10-21-search-status-report.md)).
+- **Context:** Gaia, unWISE / Legacy Surveys, 2MASS / UKIDSS / VHS, SIMBAD and VizieR (Harvard mirrors), the NASA
+  Exoplanet Archive.
+
+## Method, in brief
+
+1. **Stacked box least squares.** Each TESS sector is searched on one shared grid of 176,000 trial periods
+   (0.15–13 d) with box durations of 1–30 minutes; the per-sector log-likelihoods are added, then the best period
+   is refined on all sectors together. 20-s data are binned to 40 s.
+2. **Thresholds:** SDE ≥ 10, depth S/N ≥ 8, at least three events.
+3. **Automatic vetting:** physically possible duration for a white dwarf, odd/even depths, per-sector presence,
+   proximity to data gaps, the TESS orbital alias (13.7 d and harmonics), contaminating flux from neighbours in the
+   21-arcsecond pixel (CROWDSAP and Gaia DR3), SIMBAD and VSX.
+4. **Validation:** the pipeline recovers WD 1856+534 b blind (P = 1.407939 d, SDE 51 with six 20-s sectors) and
+   the debris transits of ZTF J0328-1219 (9.94 h).
+5. **Sensitivity:** an injection-recovery test with exact uniform-disk transit models, injected into the raw light
+   curves of real stars before cleaning and run through the full search.
+
+## Status (12 November 2026)
+
+| | |
+|---|---|
+| White dwarfs processed by the survey | 1,347 |
+| searched, no signal above threshold | 1,192 |
+| periodic signals from known objects (catalogued variables and binaries, and WD 1856+534 b itself) | 30 |
+| periodic signals rejected as false positives | 42 |
+| periodic signals still to vet | 16 |
+| no usable TESS data / no TIC match / processing error | 58 / 3 / 6 |
+| transiting planets or debris found | **0 so far** |
+
+**Injection-recovery (in progress, preliminary).** 196 injected planets on 8 of 12 test stars:
+
+| Injected planet radius | Injections | Recovered |
+|---|---|---|
+| 0.1–0.3 Earth radii | 52 | 15 % |
+| 0.3–1 | 48 | 44 % |
+| 1–3 | 44 | 82 % |
+| 3–10 | 52 | 92 % |
+
+These numbers will change as the run finishes; the final map and report will be added here.
+
+## Reports
+
+| Date | Report | Result in one line |
+|---|---|---|
+| 2026-10-21 | [Search status](reports/2026-10-21-search-status-report.md) | 24 periodic signals at 2 min, 0 transits; census of TESS 20-s data for the 100 pc sample |
+| 2026-10-25 | [Injection-recovery with machine learning](reports/2026-10-25-ml-transit-recovery.md) | a single 6-h window needs a ~4 % transit for 50 % recovery; 20-s data double recall for 1–3 min transits |
+| 2026-10-25 | [WD 1856+534 b: migration and travel](reports/2026-10-25-wd1856-migration-and-travel.md) | our secular + N-body runs reproduce the published Kozai-migration explanation |
+| 2026-10-26 | [The death of the Sun](reports/2026-10-26-death-of-the-sun.md) | REBOUND mass-loss runs on the Solar System; Mars is the innermost survivor |
+| 2026-10-28 | [A linear timeline of cosmic history](reports/2026-10-28-cosmic-timeline.md) | Planck 2018 + ICS chart mapped onto 600 s |
+| 2026-10-25 | [Fourteen years of weather at Gale crater](reports/2026-10-25-mars-rems-weather.md) | the CO₂ condensation cycle in Curiosity's REMS feed, a calibration exercise |
+| 2026-11-07 | [Infrared excess, second pass](reports/2026-11-07-ir-excess-second-pass.md) | 113 excess candidates; after per-object literature checks, four have no individual published study |
+| 2026-11-08 | [Polluted white dwarfs and wide companions](reports/2026-11-08-polluted-wd-wide-binaries.md) | we confirm the published deficit of wide companions; corrected after reading the full papers |
+| 2026-11-09 | [The fate of the known exoplanets](reports/2026-11-09-planet-fate.md) | 186 of 4,294 planets around future white dwarfs survive; none inside 1 au |
+| 2026-11-09 | [Cooling ages and habitable-zone windows](reports/2026-11-09-wd-cooling-clock.md) | cooling clock for all 16,676 stars; the TESS search already covers the habitable zone |
+
+**Corrections and negative results are part of the record.** Two examples: our best infrared-excess candidate turned
+out to be published (2011, 2020, 2026) and the report says so; a ratio we first attributed to Xu et al. (2026) was our
+own derived number, corrected after reading the full paper.
+
+## Notes
+
+- [notes/](notes/): literature verification, TESS 20-s availability, TESS orbital systematics, infrared-excess
+  passes and novelty checks, papers read in full, the 3-D clustering of the sample, where to look first, and our
+  first images with a small remote telescope (MicroObservatory).
+- [notes/vetting/](notes/vetting/): one record per white dwarf whose periodic signal we vetted, with the verdict
+  and the reason.
+
+Paths such as `wdplanets/...`, `data/...` or `output/...` inside the reports refer to our survey pipeline and
+working files; the pipeline will be released as its own package.
+
+## Tools we released
+
+- [wdclock](https://github.com/ChristianJair27/wdclock): white-dwarf cooling ages and habitable-zone windows.
+- [planetfate](https://github.com/ChristianJair27/planetfate): which planets survive the death of their star.
+- [telemetry-anomaly](https://github.com/ChristianJair27/telemetry-anomaly): spacecraft telemetry anomaly detection
+  on NASA SMAP/MSL data, a reproduction with honest scoring.
+
+## What comes next
+
+See [ROADMAP.md](ROADMAP.md): finish the injection-recovery map and write it up as a short research note, prepare for
+Gaia DR4 (2 December 2026), package the pipeline, and follow up the infrared-excess candidates.
+
+## Licence and citation
+
+Text and figures: CC BY 4.0. Code snippets: MIT. See [LICENSE](LICENSE) and [CITATION.cff](CITATION.cff).

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use these reports, figures or tables, please cite them as below."
+title: "Planets around white dwarfs: an open research notebook"
+authors:
+  - family-names: "Jair"
+    given-names: "Christian"
+    affiliation: "Kister Space (independent)"
+date-released: 2026-11-12
+version: "2026.11.12"
+license: CC-BY-4.0
+repository-code: "https://github.com/ChristianJair27/white-dwarf-planet-search"
+url: "https://christianjair27.github.io/white-dwarf-planet-search/"
+keywords:
+  - white dwarfs
+  - exoplanets
+  - TESS
+  - Gaia
+  - citizen science
