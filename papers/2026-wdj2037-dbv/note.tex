@@ -1,0 +1,116 @@
+%% RNAAS research note: new DBV WD J203728.70+145353.15
+%% Compile with AASTeX 6.3.1 (e.g. on Overleaf: upload this file, fig1.pdf and note.bib).
+%% Numbers: data/labs/dbv_note/fits.json, data/labs/dbv_ztf/ztf_result*.json (wdplanets/labs/dbv_note.py, dbv_ztf.py).
+\documentclass[RNAAS]{aastex631}
+
+\begin{document}
+
+\title{WD J203728.70+145353.15: a New Pulsating DB White Dwarf at 88 pc Found in TESS and Confirmed with ZTF}
+
+\author{Christian Jair}
+\affiliation{Independent researcher}
+
+\begin{abstract}
+We report pulsations in the DB white dwarf WD J203728.70+145353.15 (Gaia DR3 1810475401285228928; $T_{\rm eff}=23{,}225$\,K,
+$\log g=7.96$, $d=88$\,pc). TESS 20-s photometry from Sectors 55, 81 and 82 shows two modes at 334.85 and 283.55\,s and
+their sum frequency. A search of public ZTF photometry at these two frequencies recovers both modes in $g$ and $r$
+over 2018--2025 and finds nothing in a background star 3.9$''$ away, so the white dwarf is the pulsator. The ZTF
+baseline gives periods of $334.84948\pm0.00008$\,s and $283.55430\pm0.00007$\,s. A possible third mode at 361.40\,s is
+present in 2024 only. The star was flagged as variable by Gaia DR3 but listed as non-variable in a blind ZTF search;
+we find no previous report of its pulsations.
+\end{abstract}
+
+\keywords{White dwarf stars (1799) --- DB stars (358) --- Stellar pulsations (1625) --- Asteroseismology (73)}
+
+\section{Introduction}
+Helium-atmosphere white dwarfs pulsate in non-radial gravity modes (DBV or V777~Her stars) in an instability strip
+at roughly 21{,}000--30{,}000\,K \citep{corsico2022}. They are rare: \citet{vanderbosch2022} listed 28 previously
+known DBVs and added 19 from SDSS spectroscopy, and \citet{corsico2022} added two from TESS. Each new DBV gives
+periods that can constrain the mass, envelope and rotation of a white dwarf.
+
+WD J203728.70+145353.15 (SDSS J203728.70+145353.0, TIC 456645161; $G=15.15$, parallax $11.40\pm0.04$\,mas) is
+spectroscopically a DB with $T_{\rm eff}=23{,}225\pm1{,}087$\,K, $\log g=7.961\pm0.011$ and $M=0.582\,M_\odot$
+\citep{kilic2020}, inside the DBV strip. Gaia DR3 flags it as variable, and the DR3 variability classifier
+\citep{rimoldini2023} assigns it to the class of variable white dwarfs (score 0.84). Its G-band scatter is 15.7\,mmag,
+4.6 times its expected error. We found it in a search of TESS data of white dwarfs within 100\,pc of the
+\citet{gentilefusillo2021} catalogue.
+
+\section{Data and analysis}
+\textit{TESS.} We used the SPOC 20-s PDCSAP light curves of Sectors 55 (2022 August), 81 and 82 (2024 July--September).
+A star of $G=14.85$ ($BP-RP=0.90$, parallax 1.18\,mas, i.e.\ a background star) lies 4.1$''$ away, and SPOC's crowding
+correction assigns only 14--15\% of the aperture flux to the target (CROWDSAP 0.138--0.154); amplitudes below refer
+to the white dwarf's flux after that correction. We kept QUALITY\,=\,0 points, removed a 0.25-d running median and
+clipped at 5$\sigma$. False-alarm levels (0.1\%) come from the highest peak between 1{,}000 and 8{,}000\,$\mu$Hz in
+shuffled light curves. Frequencies, amplitudes and phases were fitted by non-linear least squares with two free
+frequencies and their sum; uncertainties are the formal ones, scaled by the residual scatter.
+
+\textit{ZTF.} We retrieved the public ZTF PSF-photometry light curves \citep{bellm2019,masci2019} from IRSA within
+1.5$''$ of the white dwarf and of the background star, which ZTF resolves as a separate source 3.9$''$ away. We
+kept catflags\,=\,0 and exposures of $\le 60$\,s (1{,}097 $g$ and 1{,}790 $r$ epochs, 2018 April--2025 October;
+300-s exposures would average a 335-s pulsation away). Magnitudes were converted to relative flux around the median of
+each field and CCD quadrant, and times are heliocentric mid-exposure. Because ZTF sampling is sparse, we did not
+search blindly: we computed the least-squares amplitude spectrum within $\pm1\,\mu$Hz of each TESS frequency and
+compared its maximum with the same statistic at 300 control frequencies.
+
+\section{Results}
+The white dwarf shows two modes in all three TESS sectors (Figure~\ref{fig:1}a). Fitting Sectors 81+82 together gives
+$f_1=2986.411\pm0.005\,\mu$Hz (334.8501\,s; $12.7\pm0.5$\,ppt) and $f_2=3526.657\pm0.006\,\mu$Hz (283.5546\,s;
+$10.2\pm0.5$\,ppt). The sum frequency $f_1+f_2$ (153.54\,s) has $3.8\pm0.5$\,ppt, above the 0.1\% false-alarm amplitude
+of 3.07\,ppt; such combination frequencies arise within a single pulsating star. The amplitudes of $f_1$ are
+$13.1\pm0.7$, $14.4\pm0.7$ and $11.7\pm0.8$\,ppt in Sectors 55, 81 and 82, and its fitted frequency differs between
+sectors by up to 0.07\,$\mu$Hz, several times the formal errors, which suggests small phase or frequency variations.
+After removing $f_1$, $f_2$ and $f_1+f_2$, the highest residual peak in Sectors 81+82 is at $2767.04\,\mu$Hz (361.40\,s;
+3.2\,ppt, 0.1\% false-alarm level 3.0\,ppt), present in Sectors 81 and 82 separately (3.2 and 3.3\,ppt) but not in
+Sector 55 (1.2\,ppt). We regard it as a possible third mode.
+
+ZTF recovers both TESS modes (Figure~\ref{fig:1}b,c). In $g$, $f_1$ and $f_2$ have $10.1\pm1.0$ and $9.0\pm1.0$\,ppt;
+in $r$, $8.0\pm0.7$ and $5.8\pm0.7$\,ppt. All four peaks exceed the window maxima at all 300 control frequencies
+(99.9th percentiles 4.5\,ppt in $g$ and 3.4\,ppt in $r$), and $f_1$ exceeds the 99th percentile in each of the eight
+observing seasons in both bands. The $g$ and $r$ frequencies agree, and their weighted means,
+$f_1=2986.4165\pm0.0007\,\mu$Hz and $f_2=3526.6614\pm0.0008\,\mu$Hz, agree with TESS within $1.1\sigma$. They correspond
+to periods of $334.84948\pm0.00008$\,s and $283.55430\pm0.00007$\,s. The 361.40-s candidate is not detected in ZTF, whose
+sensitivity ($\approx$4\,ppt) is not enough to test it. The background star shows 1.3--2.1\,ppt at both frequencies,
+consistent with noise (false-alarm probabilities of 36--80\%). Together with the Gaia DR3 variability of the white
+dwarf alone, this identifies the white dwarf as the pulsator.
+
+\section{Discussion}
+Three things probably kept this DBV unnoticed. In TESS the star contributes only $\sim$15\% of the light in its aperture.
+The TESS-wide searches of \citet{romero2022,romero2025} were restricted to DA white dwarfs. And \citet{jestin2026},
+who vetted Gaia DR3 variable white dwarfs with ZTF, list this star as not variable; their blind search detected
+high-frequency pulsators with ZTF $g$ amplitudes of 0.07--0.11\,mag, several times the $\approx$0.01\,mag of this star
+even allowing for differences in how amplitude is defined. A search at frequencies
+already known from TESS reaches a few ppt with the same data. Applied to other TESS pulsators, this kind of targeted
+test could confirm candidates in crowded apertures.
+
+The ZTF amplitudes of the full 2018--2025 fit are lower than those of single seasons (11--18\,ppt), so some of the
+difference from TESS may come from slow amplitude or phase changes; the cross-instrument amplitudes are also affected
+by the TESS crowding correction and are not used here for mode identification. We searched SIMBAD, the ADS
+(including full text), VizieR tables \citep{guidry2021,jestin2026} and the literature up to 2026 November 12 and found
+no report of these pulsations. Fast ground-based photometry that resolves the 4$''$ pair would reveal more modes and
+allow an asteroseismic analysis.
+
+\begin{figure}[ht!]
+\plotone{fig1.pdf}
+\caption{(a) TESS amplitude spectrum of WD J203728.70+145353.15 (Sectors 81+82, 20-s cadence) with the 0.1\%
+false-alarm level; the possible third mode is marked ``361.4\,s?''. (b, c) ZTF least-squares amplitude spectra around
+the two TESS frequencies for the white dwarf in $g$ (green) and $r$ (red), and for the background star 3.9$''$ away
+in $g$ (dotted grey).\label{fig:1}}
+\end{figure}
+
+\begin{acknowledgments}
+This paper includes data collected by the TESS mission, obtained from MAST; funding for the TESS mission is provided by
+the NASA Science Mission Directorate. It is based on observations obtained with the Samuel Oschin Telescope 48-inch
+and the 60-inch Telescope at the Palomar Observatory as part of the Zwicky Transient Facility project, obtained
+from IRSA. It has made use of data from the European Space Agency (ESA) mission Gaia, processed by the Gaia Data
+Processing and Analysis Consortium, and of the SIMBAD and VizieR services and NASA's Astrophysics Data System.
+We made use of AI-assisted tools (Anthropic's Claude) to speed up data retrieval, code development and the
+preparation of this note; all analyses were verified by the author, who is responsible for the content.
+\end{acknowledgments}
+
+\facilities{TESS, PO:1.2m (ZTF), Gaia}
+\software{astropy, astroquery, lightkurve, matplotlib, numpy, scipy}
+
+\bibliography{note}{}
+\bibliographystyle{aasjournal}
+
+\end{document}
