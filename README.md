@@ -86,7 +86,7 @@ These numbers will change as the run finishes; the final map and report will be 
 | 2026-11-08 | [Polluted white dwarfs and wide companions](reports/2026-11-08-polluted-wd-wide-binaries.md) | we confirm the published deficit of wide companions; corrected after reading the full papers |
 | 2026-11-09 | [The fate of the known exoplanets](reports/2026-11-09-planet-fate.md) | 186 of 4,294 planets around future white dwarfs survive; none inside 1 au |
 | 2026-11-09 | [Cooling ages and habitable-zone windows](reports/2026-11-09-wd-cooling-clock.md) | cooling clock for all 16,676 stars; the TESS search already covers the habitable zone |
-| 2026-11-12 | [Pulsating white dwarfs in TESS](reports/2026-11-12-zzceti-search.md) | 1,421 stars searched: 84 known pulsators, 3 candidates; one, WD J2037+1453, confirmed with ZTF as a new DBV |
+| 2026-11-12 | [Pulsating white dwarfs in TESS](reports/2026-11-12-zzceti-search.md) | 1,421 stars searched: 86 known pulsators (two of our candidates turned out to be published), one new DBV confirmed with ZTF, one candidate left; a targeted ZTF test validated on 20 known pulsators |
 
 **Corrections and negative results are part of the record.** Two examples: our best infrared-excess candidate turned
 out to be published (2011, 2020, 2026) and the report says so; a ratio we first attributed to Xu et al. (2026) was our

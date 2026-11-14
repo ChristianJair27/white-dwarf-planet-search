@@ -19,6 +19,10 @@ frequencies in Sectors 55, 81 and 82, plus their sum frequency, and Gaia DR3 fla
 TESS frequencies in g and r over 2018–2025 and shows nothing on the 4" neighbour, so the white dwarf is the pulsator.
 An ADS search found no report of its pulsations; Jestin et al. 2026 list it as not variable in their ZTF vetting. The two other candidates are DA white dwarfs observed in a single sector
 (WDJ210219.83−123412.11, 454.6 s; WDJ142213.99−332351.75, 256.7 s or 225 s). None of them is a confirmed discovery.
+**Update 2026-11-13:** ZTF confirms J2102−1234's 454.6-s pulsation (and finds a second mode, 262.1 s), but Huang et al.
+2026 had already published it, as well as the "unconfirmed" J0620+0700; both are now "known". J1422−3323 has no ZTF
+data. The targeted ZTF test recovers 12 of 20 known pulsators: 8 of 10 with main periods < 400 s (10 of 10 counting
+two marginal cases) but only 4 of 10 with periods of 400–1,000 s (section "Targeted ZTF test as a tool").
 
 ## Data
 
@@ -137,6 +141,58 @@ ZZ Ceti searches were restricted to DAs.
   identified by ZTF's resolved photometry. Gaia DR3 had flagged it as a variable-WD candidate without a period, and a
   ZTF-based vetting listed it as not variable; we found no publication of its pulsations.
 
+### Targeted ZTF test as a tool, validation and the other candidates (2026-11-13)
+
+Code: `wdplanets/labs/ztf_target.py` (generalises `dbv_ztf.py`). Products: `data/labs/ztf_target/<WDJname>/result.json`,
+`data/labs/ztf_target/validation.csv`; figures [ztf_target_<WDJname>.png](../figures/ztf_target_<WDJname>.png), `ztf_target_validation.png`.
+
+- **Method.** IRSA ZTF light curves within 10" of the white dwarf (moved by its proper motion); each ZTF object id is
+  matched to a Gaia DR3 source at its own epoch, so the white dwarf and every resolved neighbour are tested separately.
+  catflags = 0, exposures ≤ 60 s. Statistic: χ² improvement of a weighted sinusoid fit summed over g and r, either
+  coherent over 2018–2025 or summed over per-season fits (robust to slow phase changes); window ±1 µHz around each
+  TESS frequency; 300 control windows give the false-alarm probability (Gumbel tail when no control exceeds).
+  Detection: p < 0.001 after a ×2 penalty for the two statistics. Sinusoids injected into each white dwarf's own data
+  give A50/A90, the amplitude recovered 50/90 % of the time. The excess scatter (flux std / median error) is also
+  reported, because sparse sampling turns fast incoherent variability into extra white noise.
+- **Validation on 21 known TESS pulsators** (verdict "known", dec > −25°, the highest TESS amplitudes plus six
+  short-period stars added after the first batch; up to three TESS frequencies each, from our 20-s detections).
+  20 had usable ZTF data (HD 122750 B, next to a bright star, has no ZTF source; four large fields needed a second
+  run because IRSA timed out).
+  - **Overall 12 of 20 stars (60 %) recovered** (p < 0.001 on at least one TESS frequency); 14 of 20 (70 %) counting
+    the two marginal ones (ZZ Ceti, 213 s, 4.1 ppt, p = 0.002; PY Vul, 301 s, 2.2 ppt, p = 0.007).
+  - **The period matters more than the amplitude.** Main mode < 400 s: 8 of 10 detected, 10 of 10 with the marginal
+    ones (G 117-B15A, GD 66, GD 244, J1158−2029, J1252+0410, J1812+4321, J1952+2509, J2037+0612; ZZ Ceti and PY Vul
+    marginal). Main mode 400–1,000 s: 4 of 10 (HL Tau 76, 541 s; GD 358, 704 s; J2104+2333, 838 s; PG 2303+243 on
+    its 786.7-s mode only). Not recovered despite TESS amplitudes of 8–28 ppt and A50 of 4–11 ppt: J1857+3357 (553 s),
+    the DBV J0200−1546 (598 s), J1624+3212 (860 s), KX Dra (730 s), PG 1310+583 (838 s), J2028−0608 (482 s). Long-period
+    modes of cool pulsators change phase, frequency and amplitude over days to months (our interpretation, not tested
+    here), so a ±1-µHz window over seven years often misses them.
+  - **Amplitude limit for short-period (< 400 s) modes:** every TESS frequency with amplitude ≥ 5.9 ppt was detected
+    (14 of 14; lowest GD 244, 256.6 s, 5.9 ppt); of the seven at 2.2–4.1 ppt none was detected (two marginal). So the
+    limit is ~5–6 ppt in TESS amplitude at G = 14–16.5. Injections give A50 = 3.9–11.3 ppt and A90 = 4.9–17.3 ppt
+    depending on brightness and number of epochs (13.5 ppt for PY Vul, G = 13.1, which has only 36 unsaturated
+    epochs). Real modes are detected a little below A50 because ZTF g amplitudes exceed TESS ones.
+  - **Excess scatter** (std/error in g) of the six unrecovered long-period pulsators: 1.6–3.6 (five of six ≥ 2.4);
+    resolved neighbours: 1.0–1.7. Useful as a flag of variability without a period, not as a detection.
+  - **Specificity:** none of the 7 resolved neighbours of validation stars was detected at the white dwarf's
+    frequencies, and 1-ppt injections (essentially noise) were never detected in 400 trials.
+  - Positive controls: J2037+1453 (our DBV) — both modes p < 1e-30, the 3.9" neighbour p = 0.40 and 1.0;
+    J2102−1234 (below).
+- **The four stars:**
+
+  | Star | TESS | ZTF result | Verdict |
+  |---|---|---|---|
+  | WDJ210219.83−123412.11 | 454.62 s, 14.4 ppt, S92 | **detected**, 2,199.594 µHz (0.04 µHz from TESS), 11.7 ppt g / 12.3 ppt r, p ≈ 1e-15, best frequency at 2,199.57–2,199.61 µHz in 13 of 16 band-seasons; a second mode **262.14 s** found blind in ZTF, present in TESS S92 at 9.7 ppt (4.2⟨A⟩, the highest peak after 454.6 s) | pulsator confirmed on the WD, **but already published**: Huang et al. 2026 (ApJS 284, 72), TIC 442532281, 190.043 c/d → known |
+  | WDJ142213.99−332351.75 | 256.65 s or 225.4 s, 7.9 ppt, S102 (120 s) | no ZTF data (dec −33.4°) | still a candidate; Gaia DR3 VARIABLE, class WD (0.86), G scatter 4.8× errors |
+  | WDJ194549.13−153135.63 | 195.74 s, 2.4 ppt, S92 | not detected (p = 0.007–0.02; 0.4 ppt g, 3.0 ppt r); A50 = 2.7–3.0 ppt, A90 = 4.2 ppt; no excess scatter | still unconfirmed; ZTF excludes a stable mode > ~4 ppt only |
+  | WDJ062054.41+070050.21 | 878.4 s, 15.1 ppt, S87 | coherent mode not detected (p = 0.21; A50 10 ppt), but the WD's scatter is 2.7× (g) and 1.9× (r) its errors, its 7" neighbour's 1.1× and 1.0× | variable WD, **already published**: Huang et al. 2026, TIC 167394689, 98.358 c/d → known |
+
+- **Correction.** Our 2026-11-12 literature check read only the abstract of Huang et al. 2026, which covers
+  Sectors 84–96; their Appendix A table (read 2026-11-13 in the arXiv HTML version) contains J2102−1234 and
+  J0620+0700. Jestin et al. 2026 list both, and J1945−1531, with Variable = False. J2037+1453 is not in Huang et al.
+  2026 (its sectors are 55, 81 and 82); J1422−3323 is not either (Sector 102). Final verdict counts: 86 known,
+  2 candidates (J2037+1453, J1422−3323), 1 unconfirmed, 1 false positive (`final.csv` updated).
+
 ## Limitations
 
 - Single-sector candidates are not confirmations. TESS cannot separate the 4" pair of J2037+1453; the attribution
@@ -152,7 +208,10 @@ ZZ Ceti searches were restricted to DAs.
   2026-11-12; a paper in preparation by others cannot be excluded.
 - An earlier draft of this report said ZTF could not test 5-min periods. That was wrong: with 30–60-s exposures and
   a frequency known from TESS, ZTF's sparse sampling detects them (above). The other two candidates (single-sector
-  DAs) have not been tested with ZTF.
+  DAs) have not been tested with ZTF. (Done 2026-11-13, see above.)
+- The targeted ZTF test is blind to long-period (≳ 500 s) modes in most stars, so its non-detection says little for
+  cool ZZ Cetis; its validation set (16 stars) is small, and four bright/crowded fields could not be downloaded.
+- Literature checks that rely on abstracts miss objects listed only in tables (Huang et al. 2026, above).
 - No ground-based fast photometry, which would resolve more modes and allow asteroseismology.
 
 ## References (read)
@@ -164,7 +223,8 @@ ZZ Ceti searches were restricted to DAs.
   DBV strip ∼ 21,000–30,000 K.
 - Vanderbosch, Z. et al. 2022, ApJ 927, 158, arXiv:2201.09893 — 19 new DBVs, list of 28 known DBVs.
 - Jestin, T. et al. 2026, A&A 712, A243 (arXiv:2509.15133) — Gaia DR3 variable WDs vetted by ZTF; table A1 read on VizieR.
-- Huang, G. et al. 2026, ApJS 284, 72 (arXiv:2605.03323) — high-frequency oscillators in TESS Cycle 7 (abstract read).
+- Huang, G. et al. 2026, ApJS 284, 72 (arXiv:2605.03323) — high-frequency oscillators in TESS Cycle 7 (abstract read
+  2026-11-12; Appendix A white-dwarf table read 2026-11-13 in the arXiv HTML version).
 - Masci, F. J. et al. 2019, PASP 131, 018003 — standard ZTF data citation (not read; no facts taken from it).
 - Jewett, G. et al. 2024, ApJ 974, 12, arXiv:2407.04827 — J0006+3104 23.15-min period (Table 4).
 - Guidry, J. A. et al. 2021, ApJ 912, 125 (VizieR J/ApJ/912/125) — Gaia+ZTF variable white dwarfs; catalogue queried.
