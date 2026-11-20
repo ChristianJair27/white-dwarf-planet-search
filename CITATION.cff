@@ -5,8 +5,8 @@ authors:
   - family-names: "Jair"
     given-names: "Christian"
     affiliation: "Kister Space (independent)"
-date-released: 2026-11-12
-version: "2026.11.12"
+date-released: 2026-11-20
+version: "2026.11.20"
 license: CC-BY-4.0
 repository-code: "https://github.com/ChristianJair27/white-dwarf-planet-search"
 url: "https://christianjair27.github.io/white-dwarf-planet-search/"
