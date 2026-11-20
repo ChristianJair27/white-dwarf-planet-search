@@ -5,8 +5,10 @@ start, [idea] needs a resource or a decision.
 
 ## In progress
 
-- [run] **Injection-recovery:** TESS completeness for planets around the 100 pc white dwarfs, with transit models
-  injected into raw light curves and run through the full search. Without it a null result has no sensitivity.
+- [done 2026-11-20] **Injection-recovery:** 304 transit models injected into raw TESS 20-s light curves of 16 white
+  dwarfs and run through the full search; 50 % recovery at 0.26–1.08 Earth radii from G 13.5 to 16.5
+  ([report](reports/2026-11-20-injection-recovery.md)). Next: more test stars, and noisy, single-sector and
+  120-s-only targets.
 - [run] **Pulsating white dwarfs in TESS 20-s data:** a search for ZZ Ceti (DAV) pulsators among the hydrogen white
   dwarfs inside the instability strip, starting with a literature check of the published TESS pulsator searches.
 - [run] **Machine-learning repositories on NASA data:** an AstroNet/ExoMiner-style transit classifier on Kepler
@@ -14,8 +16,8 @@ start, [idea] needs a resource or a decision.
 
 ## Next, ranked
 
-1. [next] **A short research note from the injection-recovery map:** "How small a planet can TESS find around a
-   nearby white dwarf?" Our own survey plus its completeness is a citable, checkable product.
+1. [draft 2026-11-20] **A short research note from the injection-recovery map:** "How small a planet can TESS find
+   around a nearby white dwarf?" Draft in [papers/2026-injection-recovery](papers/2026-injection-recovery/).
 2. [next] **Gaia DR4 readiness (DR4 is expected on 2 December 2026).** DR4 publishes epoch astrometry. A giant planet
    a few au from a white dwarf at 20 pc moves the star by tens to hundreds of micro-arcseconds; the detectable scale
    has to be computed star by star before we promise anything. Plan: an astrometric-signal simulator for the 100 pc

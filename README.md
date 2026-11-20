@@ -61,16 +61,23 @@ happens to planetary systems, including ours, after their star dies.
 | no usable TESS data / no TIC match / processing error | 58 / 3 / 6 |
 | transiting planets or debris found | **0 so far** |
 
-**Injection-recovery (in progress, preliminary).** 196 injected planets on 8 of 12 test stars:
+**Injection-recovery (final, 20 November 2026).** 304 injected bodies on 16 stars (G = 13.6–16.7), periods
+0.2–10 d; 57.2 % recovered, none flagged at a wrong period, every non-grazing body of ≥ 1 Earth radius found
+([report](reports/2026-11-20-injection-recovery.md), [research-note draft](papers/2026-injection-recovery/)):
 
-| Injected planet radius | Injections | Recovered |
+| Injected radius (Earth radii) | Injections | Recovered |
 |---|---|---|
-| 0.1–0.3 Earth radii | 52 | 15 % |
-| 0.3–1 | 48 | 44 % |
-| 1–3 | 44 | 82 % |
-| 3–10 | 52 | 92 % |
+| 0.1–0.3 | 75 | 11 % |
+| 0.3–1 | 75 | 44 % |
+| 1–3 | 74 | 78 % |
+| 3–10 | 80 | 94 % |
 
-These numbers will change as the run finishes; the final map and report will be added here.
+| Gaia G | ≈ 13.5 | ≈ 14.5 | ≈ 15.5 | ≈ 16.5 |
+|---|---|---|---|---|
+| Radius recovered 50 % of the time (P = 1 d) | 0.26 | 0.41 | 0.67 | 1.08 Earth radii |
+
+Across the 1,489 white dwarfs searched by 20 November, an Earth-sized transiting body (0.2–10 d) would have been
+found with ≥ 50 % probability around 82 % of them, a Moon-sized one around 4.5 %.
 
 ## Reports
 
@@ -87,6 +94,7 @@ These numbers will change as the run finishes; the final map and report will be 
 | 2026-11-09 | [The fate of the known exoplanets](reports/2026-11-09-planet-fate.md) | 186 of 4,294 planets around future white dwarfs survive; none inside 1 au |
 | 2026-11-09 | [Cooling ages and habitable-zone windows](reports/2026-11-09-wd-cooling-clock.md) | cooling clock for all 16,676 stars; the TESS search already covers the habitable zone |
 | 2026-11-12 | [Pulsating white dwarfs in TESS](reports/2026-11-12-zzceti-search.md) | 1,421 stars searched: 86 known pulsators (two of our candidates turned out to be published), one new DBV confirmed with ZTF, one candidate left; a targeted ZTF test validated on 20 known pulsators |
+| 2026-11-20 | [Injection-recovery: how small a body can we find?](reports/2026-11-20-injection-recovery.md) | 304 injected bodies: 50 % recovery at 0.26–1.08 Earth radii from G 13.5 to 16.5; an Earth would be found around 82 % of the searched stars, a Moon around 4.5 % ([note draft](papers/2026-injection-recovery/)) |
 
 **Corrections and negative results are part of the record.** Two examples: our best infrared-excess candidate turned
 out to be published (2011, 2020, 2026) and the report says so; a ratio we first attributed to Xu et al. (2026) was our
@@ -112,7 +120,8 @@ working files; the pipeline will be released as its own package.
 
 ## What comes next
 
-See [ROADMAP.md](ROADMAP.md): finish the injection-recovery map and write it up as a short research note, prepare for
+See [ROADMAP.md](ROADMAP.md): extend the injection-recovery test to more stars and to noisy, single-sector and
+120-s-only targets, prepare for
 Gaia DR4 (2 December 2026), package the pipeline, and follow up the infrared-excess candidates.
 
 ## Licence and citation

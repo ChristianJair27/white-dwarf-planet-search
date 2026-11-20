@@ -1,0 +1,116 @@
+%% RNAAS research note: injection-recovery sensitivity of a TESS 20-s transit search of white dwarfs within 100 pc
+%% Compile with AASTeX 6.3.1 (e.g. on Overleaf: upload this file, fig1.pdf and note.bib).
+%% Numbers: data/inject/analysis.json and data/inject/injections.csv (python -m wdplanets.inject analyse / plot).
+\documentclass[RNAAS]{aastex631}
+
+\begin{document}
+
+\title{How Small a Transiting Body Can TESS 20-s Photometry Detect around Nearby White Dwarfs? An Injection--Recovery Test}
+
+\author{Christian Jair}
+\affiliation{Independent researcher}
+
+\begin{abstract}
+We measure the sensitivity of a box-least-squares transit search of TESS 20-s light curves of white dwarfs within
+100\,pc by injecting 304 physical transit models (0.1--10\,$R_\oplus$, periods 0.2--10\,d, all transiting
+orientations) into the raw light curves of 16 already-searched white dwarfs ($G=13.6$--16.7) and running the
+unmodified search and thresholds. 57\% of the bodies are recovered at the correct period and none at a wrong one;
+every non-grazing body of $\geq1\,R_\oplus$ is recovered. The radius recovered half of the time at $P=1$\,d is 0.26,
+0.41, 0.67 and 1.08\,$R_\oplus$ at $G\approx13.5$, 14.5, 15.5 and 16.5, and scales with magnitude, period and number of
+sectors as expected for a background-limited box search. Applied to the 1,489 white dwarfs searched so far, an
+Earth-sized body at 0.2--10\,d would have been detected with $\geq50\%$ probability around 82\% of them, a Moon-sized
+body around only 4.5\%.
+\end{abstract}
+
+\keywords{White dwarf stars (1799) --- Transit photometry (1709) --- Exoplanet detection methods (489) --- Exoplanets (498)}
+
+\section{Introduction}
+A white dwarf is about the size of the Earth, so a transiting planet blocks a large fraction of its light, but for
+only a few minutes. WD\,1856+534\,b, a giant planet on a 1.4-d orbit, is the only planet known to transit one
+\citep{vanderburg2020}. A survey that finds nothing is informative only if its sensitivity is known. For K2,
+\citet{vansluijs2018} found that bodies larger than 0.5\,$R_\oplus$ (1-min cadence) or 1\,$R_\oplus$ (30-min cadence)
+were recovered more often than not at periods below 16\,h. \citet{robert2024} searched TESS 120-s and 20-s data of
+313 polluted white dwarfs and presented their sensitivity as period--radius maps. Here we report the sensitivity of
+a search of TESS 20-s data of the white dwarfs within 100\,pc as a function of radius, brightness and period, and
+what it implies for the stars searched so far.
+
+\section{Search and injections}
+The search targets white dwarfs within 100\,pc in the \citet{gentilefusillo2021} catalogue with $G<17$ and SPOC light
+curves, using the six newest sectors at 20-s cadence (120\,s where 20-s data do not exist). Each PDCSAP light curve is
+flattened over 12\,h, clipped upward only, and binned to 40\,s; a box-least-squares search \citep{kovacs2002} with
+boxes of 1--30\,min is run per sector on a shared grid of 176,000 periods between 0.15 and 13\,d, the per-sector
+log-likelihoods are summed, and the best period is refined on all sectors. A signal is flagged when its signal
+detection efficiency is $\geq10$, its depth S/N $\geq8$ and it has $\geq3$ events.
+
+We chose 12 test stars among those already searched with no signal above threshold (three per $G$ bin: $<14$,
+14--15, 15--16, 16--17), each with 20-s data in 2--6 sectors, and injected 25 bodies into each; four further stars
+carry one injection each from an earlier trial. The white-dwarf radius follows from the catalogue's mass and
+$\log g$; the orbit is circular, with $a$ from Kepler's third law. The model is the exact overlap of two uniform disks
+(so grazing and larger-than-the-star bodies are handled), averaged over each exposure. Radii and periods are drawn
+log-uniformly in 0.1--10\,$R_\oplus$ and 0.2--10\,d, the impact parameter uniformly in $0$--$(1+R_p/R_\star)$, and the
+phase uniformly. The model multiplies the raw normalized flux \emph{before} detrending, and the unmodified search runs
+on the result. A body is recovered if it is flagged and its period matches the injected one, or a $\times\frac12$,
+2, $\frac13$ or 3 alias, within 0.2\%.
+
+We fit the 304 outcomes with $p = A/\{1+\exp[-(\log_{10}R_p-\mu)/s]\}$, where
+$\mu=\mu_0+c_G(G-15)+c_P\log_{10}(P/{\rm d})+c_N\log_{10}N_{\rm sec}$ and the ceiling $A$ accounts for grazing
+orbits; uncertainties come from 500 bootstrap refits resampling stars.
+
+\section{Results}
+Of the 304 bodies, 174 (57.2\%) were recovered, and all 174 flagged signals were at the correct period
+(Figure~\ref{fig:1}). Recovery is 11\%, 44\%, 78\% and 94\% for 0.1--0.3, 0.3--1, 1--3 and 3--10\,$R_\oplus$. All 65
+non-grazing bodies with $R_p\geq1\,R_\oplus$ were recovered; the 21 misses in that range are grazing orbits that hid at
+most 19\% of the disk, giving $A=0.91$ (0.86--0.94). The fitted coefficients are $c_G=0.21$ (0.16--0.26)\,dex per
+magnitude, $c_P=0.21$ (0.11--0.26) and $c_N=-0.28$ ($-0.46$ to $-0.06$), with a transition width $s=0.09$\,dex. A box
+search whose S/N scales as $(R_p/R_\star)^2\sqrt{N_{\rm in}}/\sigma$, with the number of in-transit points
+$N_{\rm in}\propto N_{\rm sec}P^{-2/3}$, predicts $c_P=1/6$ and $c_N=-1/4$, and $c_G=0.2$ when the noise is
+background-limited. The radius recovered half of the time at $P=1$\,d and four sectors is 0.26 (0.21--0.31), 0.41
+(0.34--0.48), 0.67 (0.52--0.80) and 1.08 (0.76--1.42)\,$R_\oplus$ at $G=13.5$, 14.5, 15.5 and 16.5; at $G=15$ it grows
+from 0.38\,$R_\oplus$ at 0.2\,d to 0.85\,$R_\oplus$ at 10\,d. Individual stars recovered between 36\% and 80\% of the
+same distribution of bodies, the lowest being faint stars or stars with two sectors.
+
+We applied the model to each of the 1,489 white dwarfs searched so far ($G=11.0$--17.0, median four sectors),
+averaging over a log-uniform period distribution in 0.2--10\,d. An Earth-sized body would have been detected with
+$\geq50\%$ probability around 82\% (68--97\%) of them, and with a mean probability of 69\% (60--82\%); for a Moon-sized
+body (0.27\,$R_\oplus$) the figures are 4.5\% (3--8\%) and 8\% (6--12\%). Multiplying by each star's transit
+probability (median 0.6\% for an Earth at 1\,d) gives an effective sample of 7.5 stars for Earth-sized bodies; if no
+such body is confirmed among the remaining candidates, the 95\% upper limit on their occurrence at 0.2--10\,d would
+be $\approx30\%$ \citep[eq.~7 of][]{vansluijs2018}.
+
+\section{Discussion}
+Twenty-second TESS photometry reaches sub-Earth radii out to several days around the brightest nearby white dwarfs,
+where the K2 search reached 0.5\,$R_\oplus$ only below 16\,h \citep{vansluijs2018}, but most of the 100\,pc sample is
+fainter than $G=15$, where the limit is two thirds of an Earth radius or more, and Moon-sized bodies reach 50\% recovery
+(at 1\,d) only around stars brighter than $G\approx13.6$. Because transit probabilities are below 1\%, even 1,500 stars
+constrain the occurrence of Earth-sized bodies only to tens of percent, comparable with the K2 limit of $<28\%$ for
+habitable-zone Earths \citep{vansluijs2018} and the TESS limits for polluted white dwarfs \citep{robert2024}; the
+period ranges and samples differ. Our injections precede detrending, use each star's own mass and radius, and require
+a 0.2\% period match, choices that, if anything, make the sensitivity conservative. The main limitations are the
+small number of test stars, which dominates the uncertainty; the extrapolation to stars outside $G=13.6$--16.7, to
+single-sector stars and to stars with only 120-s data; and the omission of the vetting steps, of limb darkening and
+of non-periodic debris transits. The test stars had no prior signal, so the absence of wrong-period detections does
+not measure the false-alarm rate on noisy stars.
+
+\begin{figure}[ht!]
+\plotone{fig1.pdf}
+\caption{(a) Recovered/injected bodies by injected radius and Gaia $G$. (b) Recovered fraction versus radius in four
+$G$ bins (points, 68\% Wilson intervals, averaged over period) with the fitted model at $P=1$\,d and four sectors
+(lines). (c) All injected bodies in the period--radius plane: recovered (filled), missed (open), missed on a grazing
+orbit (crosses); lines show the model's 50\% recovery radius at $G=13.5$, 14.5, 15.5 and 16.5.\label{fig:1}}
+\end{figure}
+
+\begin{acknowledgments}
+This paper includes data collected by the TESS mission, obtained from MAST; funding for the TESS mission is provided by
+the NASA Science Mission Directorate. It has made use of data from the European Space Agency (ESA) mission Gaia,
+processed by the Gaia Data Processing and Analysis Consortium, and of NASA's Astrophysics Data System.
+We made use of AI-assisted tools (Anthropic's Claude) to speed up data retrieval, code development and the
+preparation of this note; all analyses were verified by the author, who is responsible for the content.
+\end{acknowledgments}
+
+\facilities{TESS, Gaia}
+\software{astropy, astroquery, lightkurve, matplotlib, numpy, pandas, scipy}
+
+\bibliography{note}{}
+\bibliographystyle{aasjournal}
+
+\end{document}
