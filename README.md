@@ -5,7 +5,7 @@
 We are searching public archival data for planets and planetary debris that transit white dwarfs, the Earth-sized
 remnants of stars like the Sun. This repository is our open notebook: the reports, the per-object vetting records,
 the literature checks and the corrections, published as we go. It is a citizen-science project run by
-**Christian Jair (Kister Space)**; nothing here has been peer reviewed.
+**Christian Jair (Kister Space)**, ORCID [0009-0006-4779-3708](https://orcid.org/0009-0006-4779-3708); nothing here has been peer reviewed.
 
 **Website:** https://christianjair27.github.io/white-dwarf-planet-search/ ·
 **Videos:** [youtube.com/@KisterSpace](https://www.youtube.com/@KisterSpace)

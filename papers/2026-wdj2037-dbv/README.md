@@ -1,4 +1,9 @@
-# WD J203728.70+145353.15: a new pulsating DB white dwarf at 88 pc
+# WD J203728.70+145353.15: a pulsating DB white dwarf at 88 pc
+
+> **Status (2026-11-24).** After this draft was posted we learned that another group had identified this star as a
+> likely DBV independently and earlier, in their own TESS search, and is including it in a larger paper now in
+> preparation. We recognise their priority and will not submit this note separately; the analysis below stays
+> public as an open record.
 
 **Preprint (draft, not peer reviewed):** [WDJ2037_DBV_preprint.pdf](WDJ2037_DBV_preprint.pdf) ·
 LaTeX source for Research Notes of the AAS: [note.tex](note.tex), [note.bib](note.bib), [fig1.pdf](fig1.pdf)
@@ -24,4 +29,4 @@ and calibrating the false-alarm level on 300 control frequencies, detects ~1 % p
 
 Comments and corrections are welcome through the repository's issues.
 
-*Christian Jair (Kister Space), independent researcher. First posted 2026-11-13.*
+*Christian Jair (Kister Space), independent researcher, ORCID [0009-0006-4779-3708](https://orcid.org/0009-0006-4779-3708). First posted 2026-11-13.*

@@ -21,4 +21,4 @@ limitations: [reports/2026-11-20-injection-recovery.md](../../reports/2026-11-20
 
 Comments and corrections are welcome through the repository's issues.
 
-*Christian Jair (Kister Space), independent researcher. First posted 2026-11-20.*
+*Christian Jair (Kister Space), independent researcher, ORCID [0009-0006-4779-3708](https://orcid.org/0009-0006-4779-3708). First posted 2026-11-20.*
