@@ -10,11 +10,13 @@ the literature checks and the corrections, published as we go. It is a citizen-s
 **Website:** https://christianjair27.github.io/white-dwarf-planet-search/ ·
 **Videos:** [youtube.com/@KisterSpace](https://www.youtube.com/@KisterSpace)
 
-## New: a pulsating white dwarf (13 November 2026)
+## A pulsating white dwarf, and who found it first
 
-While searching TESS for pulsating white dwarfs we found **WD J203728.70+145353.15**, a helium-atmosphere white dwarf
-at 88 pc that pulsates with periods of 334.85 s and 283.55 s. Seven years of public ZTF data confirm both modes and
-show that the white dwarf, not a neighbour 4″ away, is the pulsator. We found no previous report of its pulsations.
+While searching TESS for pulsating white dwarfs we flagged **WD J203728.70+145353.15**, a helium-atmosphere white dwarf
+at 88 pc that pulsates with periods of 334.85 s and 283.55 s, and used seven years of public ZTF data to show that the
+white dwarf, not a neighbour 4″ away, is the pulsator. **Another group had identified this star independently and
+earlier** in their own TESS search, and it will appear in their paper (in preparation); we recognise their priority and
+will not submit our note separately. Our analysis stays public as an open record.
 **[Preprint and data](papers/2026-wdj2037-dbv/)** · [vetting record](notes/vetting/WDJ203728.70+145353.15.md) ·
 [search report](reports/2026-11-12-zzceti-search.md). Not yet peer reviewed.
 
@@ -93,7 +95,7 @@ found with ≥ 50 % probability around 82 % of them, a Moon-sized one around 4.5
 | 2026-11-08 | [Polluted white dwarfs and wide companions](reports/2026-11-08-polluted-wd-wide-binaries.md) | we confirm the published deficit of wide companions; corrected after reading the full papers |
 | 2026-11-09 | [The fate of the known exoplanets](reports/2026-11-09-planet-fate.md) | 186 of 4,294 planets around future white dwarfs survive; none inside 1 au |
 | 2026-11-09 | [Cooling ages and habitable-zone windows](reports/2026-11-09-wd-cooling-clock.md) | cooling clock for all 16,676 stars; the TESS search already covers the habitable zone |
-| 2026-11-12 | [Pulsating white dwarfs in TESS](reports/2026-11-12-zzceti-search.md) | 1,421 stars searched: 86 known pulsators (two of our candidates turned out to be published), one new DBV confirmed with ZTF, one candidate left; a targeted ZTF test validated on 20 known pulsators |
+| 2026-11-12 | [Pulsating white dwarfs in TESS](reports/2026-11-12-zzceti-search.md) | 1,421 stars searched: 86 known pulsators (two of our candidates turned out to be published), one DBV confirmed with ZTF (found earlier by another group, see above), one candidate left; a targeted ZTF test validated on 20 known pulsators |
 | 2026-11-20 | [Injection-recovery: how small a body can we find?](reports/2026-11-20-injection-recovery.md) | 304 injected bodies: 50 % recovery at 0.26–1.08 Earth radii from G 13.5 to 16.5; an Earth would be found around 82 % of the searched stars, a Moon around 4.5 % ([note draft](papers/2026-injection-recovery/)) |
 
 **Corrections and negative results are part of the record.** Two examples: our best infrared-excess candidate turned
