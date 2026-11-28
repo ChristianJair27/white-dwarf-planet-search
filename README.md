@@ -51,17 +51,25 @@ happens to planetary systems, including ours, after their star dies.
 5. **Sensitivity:** an injection-recovery test with exact uniform-disk transit models, injected into the raw light
    curves of real stars before cleaning and run through the full search.
 
-## Status (12 November 2026)
+## Status (28 November 2026)
 
 | | |
 |---|---|
-| White dwarfs processed by the survey | 1,347 |
-| searched, no signal above threshold | 1,192 |
-| periodic signals from known objects (catalogued variables and binaries, and WD 1856+534 b itself) | 30 |
-| periodic signals rejected as false positives | 42 |
-| periodic signals still to vet | 16 |
-| no usable TESS data / no TIC match / processing error | 58 / 3 / 6 |
+| White dwarfs processed by the survey (of 3,339 with G < 17) | 3,029 |
+| searched, no signal above threshold | 2,701 |
+| periodic signals from known objects (catalogued variables and binaries, and WD 1856+534 b itself) | 45 |
+| periodic signals rejected as false positives | 113 |
+| periodic signals still to vet | 0 |
+| no usable TESS data / no TIC match / processing error | 166 / 3 / 1 |
 | transiting planets or debris found | **0 so far** |
+
+Of the stars with a light curve, 2,544 were searched at 20-s cadence. The last two signals (28 November) were noise
+amplified by the TESS crowding correction in apertures where the white dwarf gives 0.3-4 % of the light.
+
+**Infrared-excess candidates, confusion checks (28 November 2026).** None of our four unpublished WISE-excess
+candidates can be called a confirmed excess: one is most likely a background galaxy, one is weakened by its proper
+motion, one has a galaxy 2.6″ away inside the WISE beam, and one passes every check but only because the
+proper-motion test has no power for it ([note](notes/irx-confusion-checks-2026-11-28.md)).
 
 **Injection-recovery (final, 20 November 2026).** 304 injected bodies on 16 stars (G = 13.6–16.7), periods
 0.2–10 d; 57.2 % recovered, none flagged at a wrong period, every non-grazing body of ≥ 1 Earth radius found
@@ -97,6 +105,8 @@ found with ≥ 50 % probability around 82 % of them, a Moon-sized one around 4.5
 | 2026-11-09 | [Cooling ages and habitable-zone windows](reports/2026-11-09-wd-cooling-clock.md) | cooling clock for all 16,676 stars; the TESS search already covers the habitable zone |
 | 2026-11-12 | [Pulsating white dwarfs in TESS](reports/2026-11-12-zzceti-search.md) | 1,421 stars searched: 86 known pulsators (two of our candidates turned out to be published), one DBV confirmed with ZTF (found earlier by another group, see above), one candidate left; a targeted ZTF test validated on 20 known pulsators |
 | 2026-11-20 | [Injection-recovery: how small a body can we find?](reports/2026-11-20-injection-recovery.md) | 304 injected bodies: 50 % recovery at 0.26–1.08 Earth radii from G 13.5 to 16.5; an Earth would be found around 82 % of the searched stars, a Moon around 4.5 % ([note draft](papers/2026-injection-recovery/)) |
+| 2026-11-24 | [Have we found anything new?](reports/2026-11-24-what-is-new.md) | all 132 threshold crossings so far explained (91 false positives, 41 known); hour-long eclipses of neighbours slip past a 30-min box cap; a 10.96-d "period" in 18 stars is a Sector 72 systematic |
+| 2026-11-24 | [Vetting fixes](reports/2026-11-24-pipeline-fixes.md) | per-star physical duration limit with a 4-min to 4-h box scan, a shared-period veto, verdicts written back automatically; 14 offline tests |
 
 **Corrections and negative results are part of the record.** Two examples: our best infrared-excess candidate turned
 out to be published (2011, 2020, 2026) and the report says so; a ratio we first attributed to Xu et al. (2026) was our
@@ -105,7 +115,7 @@ own derived number, corrected after reading the full paper.
 ## Notes
 
 - [notes/](notes/): literature verification, TESS 20-s availability, TESS orbital systematics, infrared-excess
-  passes and novelty checks, papers read in full, the 3-D clustering of the sample, where to look first, and our
+  passes, novelty and confusion checks, papers read in full, the 3-D clustering of the sample, where to look first, and our
   first images with a small remote telescope (MicroObservatory).
 - [notes/vetting/](notes/vetting/): one record per white dwarf whose periodic signal we vetted, with the verdict
   and the reason.
@@ -119,6 +129,12 @@ working files; the pipeline will be released as its own package.
 - [planetfate](https://github.com/ChristianJair27/planetfate): which planets survive the death of their star.
 - [telemetry-anomaly](https://github.com/ChristianJair27/telemetry-anomaly): spacecraft telemetry anomaly detection
   on NASA SMAP/MSL data, a reproduction with honest scoring.
+- [exoplanet-cnn](https://github.com/ChristianJair27/exoplanet-cnn): a 1-D CNN that vets Kepler transit signals
+  (AstroNet reproduced from raw light curves, extended with ExoMiner-style diagnostic views).
+- [mars-terrain-seg](https://github.com/ChristianJair27/mars-terrain-seg): Mars rover terrain segmentation on NASA
+  JPL's AI4Mars.
+- [space-launches-in-data](https://github.com/ChristianJair27/space-launches-in-data): every orbital launch attempt
+  since Sputnik, from Jonathan McDowell's GCAT.
 
 ## What comes next
 

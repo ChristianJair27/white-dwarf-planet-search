@@ -1,4 +1,4 @@
-# Roadmap (12 November 2026)
+# Roadmap (28 November 2026)
 
 What we are doing now and what comes next, ranked by scientific value. Status: [run] in progress, [next] ready to
 start, [idea] needs a resource or a decision.
@@ -9,21 +9,29 @@ start, [idea] needs a resource or a decision.
   dwarfs and run through the full search; 50 % recovery at 0.26–1.08 Earth radii from G 13.5 to 16.5
   ([report](reports/2026-11-20-injection-recovery.md)). Next: more test stars, and noisy, single-sector and
   120-s-only targets.
-- [run] **Pulsating white dwarfs in TESS 20-s data:** a search for ZZ Ceti (DAV) pulsators among the hydrogen white
-  dwarfs inside the instability strip, starting with a literature check of the published TESS pulsator searches.
-- [run] **Machine-learning repositories on NASA data:** an AstroNet/ExoMiner-style transit classifier on Kepler
-  DR24 and a Mars terrain segmentation model on AI4Mars, to be published as separate repositories.
+- [run] **The transit survey of the TESS-bright sample (G < 17) is in its last few hundred stars.** When it ends,
+  the final counts and the completeness map go into the injection-recovery note.
+- [done 2026-11-24] **Vetting fixes:** per-star physical duration limit with a 4-min to 4-h box scan, a shared-period
+  veto and verdicts written back automatically ([report](reports/2026-11-24-pipeline-fixes.md)).
+- [done 2026-11-28] **Survey robustness:** a watchdog restarts the survey if an archive read hangs, and a sector
+  with no usable cadences no longer costs the whole star.
+- [run] **Infrared-excess candidates, expert checks:** CatWISE proper motions against Gaia, background galaxies in
+  the WISE beam, and ~1″ near-infrared imaging, as recommended by a specialist in dusty white dwarfs.
+- [done 2026-11-12] **Pulsating white dwarfs in TESS 20-s data** ([report](reports/2026-11-12-zzceti-search.md)).
+- [done] **Machine-learning repositories on NASA data:**
+  [exoplanet-cnn](https://github.com/ChristianJair27/exoplanet-cnn) and
+  [mars-terrain-seg](https://github.com/ChristianJair27/mars-terrain-seg).
 
 ## Next, ranked
 
 1. [draft 2026-11-20] **A short research note from the injection-recovery map:** "How small a planet can TESS find
    around a nearby white dwarf?" Draft in [papers/2026-injection-recovery](papers/2026-injection-recovery/).
-2. [next] **Gaia DR4 readiness (DR4 is expected on 2 December 2026).** DR4 publishes epoch astrometry. A giant planet
-   a few au from a white dwarf at 20 pc moves the star by tens to hundreds of micro-arcseconds; the detectable scale
-   has to be computed star by star before we promise anything. Plan: an astrometric-signal simulator for the 100 pc
-   sample (wobble against planet mass and period, using our cooling ages and survival limits), a fitter for epoch
-   data, and a test on the DR3 non-single-star solutions. Literature check first (Gaia exoplanet yield predictions,
-   DR4 documentation).
+2. [ready 2026-11-24] **Gaia DR4 (expected 2 December 2026).** Code for epoch photometry, epoch astrometry and
+   variability is written and self-tested; it waits for the data
+   ([report](reports/2026-11-24-pipeline-fixes.md), section 6). Epoch astrometry: a Jupiter on a 3-yr orbit would
+   displace 379 of the 16,676 white dwarfs by more than 100 micro-arcseconds; whether that is detectable depends on
+   the DR4 per-epoch errors, which we will measure before promising anything. Epoch photometry: eclipses and debris
+   dips need at least three in-transit epochs from different visits.
 3. [next] **The survey pipeline as a package:** stacked BLS for minute-long transits, 20-s data, validation on
    WD 1856+534 b, and the completeness map, packaged and tested. General transit tools (lightkurve, TLS, wotan) are
    not tuned for white dwarfs, where transits last minutes.
